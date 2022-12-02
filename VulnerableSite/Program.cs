@@ -1,7 +1,12 @@
+using VulnerableSite.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services
+    .AddSingleton<IXssService, XssService>();
 
 var app = builder.Build();
 

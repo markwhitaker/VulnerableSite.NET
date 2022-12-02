@@ -1,0 +1,27 @@
+@model XssViewModel
+
+<h1>XSS vulnerable page</h1>
+
+<h3>Add a message</h3>
+<div>
+    <form method="post" action="@Url.Action("Add")">
+        <input type="text" name="message"/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+
+<br/>
+
+<h3>Messages</h3>
+<div>
+    @{
+        if (Model == default)
+        {
+            return;
+        }
+        foreach (var message in Model.Messages)
+        {
+            <div>@Html.Raw(message)</div>
+        }
+    }
+</div>
