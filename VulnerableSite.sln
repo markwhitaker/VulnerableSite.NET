@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VulnerableSite", "VulnerableSite\VulnerableSite.csproj", "{5E8D9430-0AD4-4B14-B763-0DB1BE2ACB27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VulnerableSite.Tests", "VulnerableSite.Tests\VulnerableSite.Tests.csproj", "{2EAFBF98-3103-44FA-80E3-4CB82C421390}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5E8D9430-0AD4-4B14-B763-0DB1BE2ACB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E8D9430-0AD4-4B14-B763-0DB1BE2ACB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E8D9430-0AD4-4B14-B763-0DB1BE2ACB27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EAFBF98-3103-44FA-80E3-4CB82C421390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAFBF98-3103-44FA-80E3-4CB82C421390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAFBF98-3103-44FA-80E3-4CB82C421390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAFBF98-3103-44FA-80E3-4CB82C421390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

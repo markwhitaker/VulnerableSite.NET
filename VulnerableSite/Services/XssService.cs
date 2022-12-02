@@ -1,6 +1,6 @@
 namespace VulnerableSite.Services;
 
-class XssService : IXssService
+public class XssService : IXssService
 {
     private readonly List<string> _messages = new();
 
