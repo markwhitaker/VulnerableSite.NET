@@ -58,7 +58,7 @@ jobs:
         with:
           app-name: 'vulnerable-site'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CFF3B62097EB4590BC74059C9AEE666E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2420DECCA1284916B589C403FFDA2CA0 }}
           package: .
 
   scan-with-dastardly:
