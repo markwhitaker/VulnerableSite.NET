@@ -38,43 +38,43 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-  # deploy:
-  #   name: Deploy
-  #   runs-on: ubuntu-latest
-  #   needs: build-test-publish
-  #   environment:
-  #     name: 'Production'
-  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build-test-publish
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-  #   steps:
-  #     - name: Download artifact from build job
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: .net-app
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
 
-  #     - name: Deploy to Azure Web App
-  #       id: deploy-to-webapp
-  #       uses: azure/webapps-deploy@v2
-  #       with:
-  #         app-name: 'vulnerable-site'
-  #         slot-name: 'Production'
-  #         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4575DAC5A18D42F4AE1A7DDB06CA29F7 }}
-  #         package: .
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'vulnerable-site'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4080FF02C6844229A0E0EB0ED16426F0 }}
+          package: .
 
-  # scan-with-dastardly:
-  #   name: Scan with Dastardly
-  #   runs-on: ubuntu-latest
-  #   needs: deploy
+  scan-with-dastardly:
+    name: Scan with Dastardly
+    runs-on: ubuntu-latest
+    needs: deploy
 
-  #   steps:
-  #     - name: Run Dastardly Action Step
-  #       uses: PortSwigger/dastardly-github-action@main
-  #       with:
-  #         target-url: 'https://vulnerable-site.azurewebsites.net/'
+    steps:
+      - name: Run Dastardly Action Step
+        uses: PortSwigger/dastardly-github-action@main
+        with:
+          target-url: 'https://vulnerable-site.azurewebsites.net/'
 
-  #     - name: Publish Test Report
-  #       if: always()                                    # Forces this step to always run
-  #       uses: mikepenz/action-junit-report@v3
-  #       with:
-  #         report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
-  #         require_tests: true
+      - name: Publish Test Report
+        if: always()                                    # Forces this step to always run
+        uses: mikepenz/action-junit-report@v3
+        with:
+          report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
+          require_tests: true
