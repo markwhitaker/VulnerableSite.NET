@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy vulnerable website to Azure
+name: Build, deploy and scan
 
 on:
   push:
@@ -27,7 +27,15 @@ jobs:
         run: dotnet build -c Release
 
       - name: Test with dotnet
-        run: dotnet test -c Release
+        run: dotnet test -c Release --logger "trx;LogFileName=testResults.trx"
+
+      - name: Publish test report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: .NET unit tests
+          path: TestResults/testResults.trx
+          reporter: dotnet-trx
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
