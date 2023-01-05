@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up .NET Core
+      - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
@@ -76,5 +76,6 @@ jobs:
         if: always()                                    # Forces this step to always run
         uses: mikepenz/action-junit-report@v3
         with:
+          check_name: 'Dastardly Scan Report'
           report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
           require_tests: true
