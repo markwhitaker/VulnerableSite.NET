@@ -67,15 +67,15 @@ jobs:
     needs: deploy
 
     steps:
-      - name: Run Dastardly Action Step
+      - name: Run Dastardly Scan
         uses: PortSwigger/dastardly-github-action@main
         with:
           target-url: 'https://vulnerable-site.azurewebsites.net/'
 
-      - name: Publish Test Report
-        if: always()                                    # Forces this step to always run
+      - name: Publish Dastardly Scan Report
+        if: always()
         uses: mikepenz/action-junit-report@v3
         with:
           check_name: 'Dastardly Scan Report'
-          report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
+          report_paths: '**/dastardly-report.xml'
           require_tests: true
